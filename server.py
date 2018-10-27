@@ -33,6 +33,7 @@ from controller.sfid_controller import sfid_api
 from controller.slot_filling_controller import slot_filling_api
 from controller.seq2sql_controller import seq2sql_api
 from controller.sid_controller import sid_api
+from controller.pso_controller import pso_api
 
 from sfid import sfid
 from argumentation import argumentation
@@ -44,6 +45,7 @@ from material import material
 from chestxray import chestxray
 from sid import sid
 from data_selection import data_selection
+from pso import pso
 
 app = Flask(__name__)
 CORS(app)
@@ -67,6 +69,7 @@ app.register_blueprint(go_chatbot, url_prefix='/go_chatbot')
 app.register_blueprint(summarization, url_prefix='/summarization')
 app.register_blueprint(sfid_api, url_prefix='/sfid_old')
 app.register_blueprint(grocery, url_prefix='/grocery')
+app.register_blueprint(pso, url_prefix='/pso')
 app.register_blueprint(emotion, url_prefix='/emotion')
 
 app.register_blueprint(material, url_prefix='/material')

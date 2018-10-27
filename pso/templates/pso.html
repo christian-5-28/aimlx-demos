@@ -1,0 +1,100 @@
+{% extends "ui-kit/site_layout.html" %}
+
+{% block head %}
+    {{ super() }}
+        <link rel="stylesheet" href="pso/static/pso.css">
+{% endblock %}
+
+{% block title %}Particle Swarm Optimization Search{% endblock %}
+
+{% block description %}Using a Population-based algorithm for Neural Architecture Search{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="row flex-items-xs-center">
+        <h4 class="font font--serif">Evolution during the search of a Recurrent Cell vs LSTM cell</h4>
+    </div>
+    <div class="row flex-items-xs-center">
+        <ul class="bar-chart__legend">
+            <li style="opacity: 1;">
+                <span class="bullet apple"></span>
+                <span>Inputs of the Cell</span>
+            </li>
+            <li style="opacity: 1;">
+                <span class="bullet turquoise"></span>
+                <span>Internal Nodes</span>
+            </li>
+            <li style="opacity: 1;">
+                <span class="bullet pso_yellow"></span>
+                <span>Outputs of the Cell</span>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div class="row flex-items-xs-center">
+        <div class="col-xs-12 col-md-6">
+            <img id="evolution" class="center" src="pso/static/pso_images/Tanh_ev.png" ></img>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <img class="center" src="pso/static/pso_images/cell_lstm.png" ></img>
+        </div>
+    </div>
+    <div class="row flex-items-xs-center">
+        <div class="col-xs-12 col-md-4 offset-md-2">
+            <h5 align="center" class="font font--serif">Automatic Cell internal configuration</h5>
+        </div>
+        <div class="col-xs-12 col-md-4 offset-md-2">
+            <h5 align="center" class="font font--serif">LSTM internal configuration</h5>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row flex-items-xs-center">
+
+        <div class="col-xs-12 col-md-4 offset-xs-1">
+            <br>
+            <div class="row flex-items-xs-center">
+                <!-- Primary button -->
+                <button id="run" class="button button--primary" value="pause">Run Evolution</button>
+            </div>
+            <br>
+            <br>
+            <div class="row flex-items-xs-center">
+                <button class="button button--secondary" id="btnChartUpdate">Show Results</button>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 ">
+            <div class="bg">
+              <h4>Perplexity on test set of the two cells on PTB dataset</h4>
+              <div class="bar-chart-vertical" id="barChart01" data-init="auto" data-max="60" data-unit="ppl">
+                <div class="js-data-list">
+                  <div class="js-category" data-color="turquoise">Test set ppl</div>
+                  <div class="js-data" data-value="58.8">LSTM </div>
+                  <div class="js-data" data-value="58.3">LSTM + skip connections</div>
+                  <div class="js-data" data-value="57.4">LSTM + 5 softmax experts</div>
+                  <div class="js-data" data-value="58.4">PSO Best cell so far</div>
+
+                </div>
+                <div class="chart-wrapper">
+                  <ul class="bar-chart__grid">
+                    <li><div class="axis-y-label">60</div></li>
+                    <li><div class="axis-y-label">40</div></li>
+                    <li><div class="axis-y-label">20</div></li>
+                  </ul>
+                  <ul class="chart js-chart"></ul>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
+    <script src="{{ url_for('pso.static', filename='pso.js') }}"></script>
+{% endblock %}

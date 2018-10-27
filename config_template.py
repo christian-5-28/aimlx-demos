@@ -87,6 +87,14 @@ grocery = {
     'url':'',
     'dir': ''
 }
+
+pso = {
+    'host': '',
+    'port': 1998,
+    'url':'',
+    'dir': ''
+}
+
 emotions = {
     'url': '',
     'img_path': ''
